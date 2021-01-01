@@ -17,7 +17,7 @@ find_package(Qt5 REQUIRED COMPONENTS
 )
 
 
-add_library(SIUtils STATIC ${SOURCES})
+add_library(SIRouters STATIC ${SOURCES})
 
 list(APPEND QML_IMPORT_PATH {CMAKE_CURRENT_SOURCE_DIR}/qml)
 

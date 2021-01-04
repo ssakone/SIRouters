@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>qml/Routers/Routers.qml</file>
-        <file>qml/Routers/Route.qml</file>
-    </qresource>
-</RCC>

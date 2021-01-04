@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>SIRouters/si/Routers/Routers.qml</file>
+        <file>SIRouters/si/Routers/Route.qml</file>
+        <file>SIRouters/si/Routers/qmldir</file>
+        <file>SIRouters/qmldir</file>
+    </qresource>
+</RCC>

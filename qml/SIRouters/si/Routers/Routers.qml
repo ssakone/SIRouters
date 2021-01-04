@@ -20,7 +20,6 @@ QtObject {
 
     function route(name,arg={}) {
         let _route = _control._routes[name]
-        console.log(Object.keys(_control._routes))
         if(_route.source.enabled) {
             let component = _route.component
             _route.target.push(component, arg)

@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.14)
 
 project(SIRouters LANGUAGES CXX)
 
-
-set(PROJECT_NAME SIRouters)
-
 find_package(Qt5 REQUIRED COMPONENTS
   Core
   Gui
@@ -16,10 +13,17 @@ find_package(Qt5 REQUIRED COMPONENTS
   QuickCompiler
 )
 
+set(HEADERS
+    include/routers/routers.h
+)
 
-add_library(SIRouters STATIC ${SOURCES})
+set(SOURCES
+  src/routers.cpp
+  qml/SIRouters.qrc
+)
 
-list(APPEND QML_IMPORT_PATH {CMAKE_CURRENT_SOURCE_DIR}/qml)
+
+list(APPEND QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml/SIRouters/)
 
 list(REMOVE_DUPLICATES QML_IMPORT_PATH)
 
@@ -28,9 +32,25 @@ set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
     FORCE
 )
 
-target_compile_definitions(${PROJECT_NAME} PUBLIC)
+list(APPEND QML2_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml/SIRouters/)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
+list(REMOVE_DUPLICATES QML2_IMPORT_PATH)
+
+set(QML_IMPORT_PATH ${QML2_IMPORT_PATH}
+    CACHE STRING "Qt Creator 4.1 extra qml import paths"
+    FORCE
+)
+
+
+qtquick_compiler_add_resources(ROUTERS_QML_RES qml/SIRouters.qrc)
+
+add_library(SIRouters STATIC ${HEADERS} ${SOURCES} ${ROUTERS_QML_RES})
+
+
+target_compile_definitions(SIRouters PUBLIC)
+target_include_directories(SIRouters PUBLIC include)
+
+target_link_libraries(SIRouters PUBLIC
   Qt::Core
   Qt::Gui
   Qt::Svg
